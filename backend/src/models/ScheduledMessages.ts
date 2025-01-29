@@ -36,10 +36,10 @@ class ScheduledMessages extends Model<ScheduledMessages> {
     @Column
     criar_ticket: boolean;
 
-    @Column({ type: DataType.JSONB })
+    @Column({ type: DataType.JSON })
     contatos: String[];
 
-    @Column({ type: DataType.JSONB })
+    @Column({ type: DataType.JSON })
     tags: String[];
 
     @Column

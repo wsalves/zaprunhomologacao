@@ -20,7 +20,6 @@ import SendWhatsAppMediaFlow, {
   typeSimulation
 } from "../WbotServices/SendWhatsAppMediaFlow";
 import { randomizarCaminho } from "../../utils/randomizador";
-import { SendMessageFlow } from "../../helpers/SendMessageFlow";
 import formatBody from "../../helpers/Mustache";
 import SetTicketMessagesAsRead from "../../helpers/SetTicketMessagesAsRead";
 import SendWhatsAppMessage from "../WbotServices/SendWhatsAppMessage";

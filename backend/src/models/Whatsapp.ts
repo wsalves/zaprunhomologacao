@@ -203,7 +203,7 @@ class Whatsapp extends Model<Whatsapp> {
   queueIntegrations: QueueIntegrations;
 
   @Column({
-    type: DataType.JSONB
+    type: DataType.JSON
   })
   schedules: [];
 

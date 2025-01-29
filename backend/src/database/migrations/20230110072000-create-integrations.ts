@@ -13,7 +13,7 @@ module.exports = {
         type: DataTypes.INTEGER,
         references: { model: "Companies", key: "id" },
         onUpdate: "CASCADE",
-        onDelete: "SET NULL",
+        onDelete: "CASCADE", 
         allowNull: false
       },
       name: {

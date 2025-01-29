@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "npx tsc",
-    "dev": "tsnd --respawn src/server.ts",
+    "clean": "npx rimraf dist",
+    "build": "tsc",
     "watch": "tsc -w",
+    "dev": "tsnd --respawn src/server.ts",
     "start": "nodemon dist/server.js",
     "dev:server": "ts-node-dev --respawn --transpile-only --ignore node_modules src/server.ts",
     "db:migrate": "npx sequelize db:migrate",

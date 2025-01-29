@@ -36,10 +36,10 @@ module.exports = {
         defaultValue: false
       },
       contatos: {
-        type: DataTypes.JSONB
+        type: DataTypes.JSON
       },
       tags: {
-        type: DataTypes.JSONB
+        type: DataTypes.JSON
       },
       companyId: {
         type: DataTypes.INTEGER

@@ -20,7 +20,7 @@ module.exports = {
       /SequelizeInvalidConnectionError/,
       /SequelizeConnectionTimedOutError/
     ],
-    max: 100
+    max: 1
   },
   pool: {
     max: parseInt(process.env.DB_POOL_MAX) || 100,
@@ -29,7 +29,7 @@ module.exports = {
     idle: parseInt(process.env.DB_POOL_IDLE) || 600000
   },
   dialect: process.env.DB_DIALECT || "postgres",
-  timezone: 'America/Sao_Paulo',
+  timezone: '-03:00',
   host: process.env.DB_HOST || "localhost",
   port: process.env.DB_PORT || "5432",
   database: process.env.DB_NAME,

@@ -8,7 +8,7 @@ module.exports = {
         defaultValue: true
       }),
       queryInterface.addColumn("Companies", "schedules", {
-        type: DataTypes.JSONB,
+        type: DataTypes.JSON,
         defaultValue: []
       })
     ]);

@@ -4,9 +4,11 @@ module.exports = {
   up: (queryInterface: QueryInterface) => {
     return queryInterface.createTable("Messages", {
       id: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
         primaryKey: true,
-        allowNull: false
+        autoIncrement: true,
+        allowNull: false,
+        unique: true 
       },
       body: {
         type: DataTypes.TEXT,
