@@ -14,9 +14,9 @@ const queryAdmin = `
   select
   t.channel as label,
   count(1) as qtd
-  from "Tickets" t
-  where t."companyId" = :companyId
-  and date_trunc('day', t."createdAt") between :startDate and :endDate
+  from Tickets t
+  where t.companyId = :companyId
+  and date_trunc('day', t.createdAt) between :startDate and :endDate
   group by t.channel
   ) a
   order by 2 Desc
@@ -27,8 +27,8 @@ const query = `
   select
   t.channel as label,
   count(1) as qtd
-  from "Tickets" t
-  where t."companyId" = :companyId AND t."userId" = :userId
+  from Tickets t
+  where t.companyId = :companyId AND t."userId" = :userId
   and date_trunc('day', t."createdAt") between :startDate and :endDate
   group by t.channel
   ) a

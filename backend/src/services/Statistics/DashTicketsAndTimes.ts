@@ -19,8 +19,8 @@ const query = `
     coalesce(concat(ROUND(AVG(tme)::decimal,0), 0), 'minutes')::interval TME,
     (select count(distinct(c."id"))
       from "Contacts" c
-      INNER JOIN "Tickets" tc ON tc."contactId" = c."id"
-      INNER JOIN "LogTickets" ltc ON ltc."ticketId" = tc."id"
+      INNER JOIN Tickets tc ON tc."contactId" = c."id"
+      INNER JOIN "LogTickets" ltc ON ltc.ticketId = tc."id"
       where
         c."tenantId" = :tenantId
         and ltc."userId" = :userId
@@ -40,8 +40,8 @@ const query = `
       extract(epoch from AGE(to_timestamp(t."closedAt"/1000), t."createdAt")::interval)/60 tma,
       extract(epoch from AGE(to_timestamp(t."startedAttendanceAt"/1000), t."createdAt"::timestamp)::interval)/60 tme,
       t."tenantId"
-    from "Tickets" t
-    INNER JOIN "LogTickets" lt ON lt."ticketId" = t."id"
+    from Tickets t
+    INNER JOIN "LogTickets" lt ON lt.ticketId = t."id"
     where
       t."tenantId" = :tenantId
       and date_trunc('day', t."createdAt") between :startDate and :endDate
@@ -80,8 +80,8 @@ const queryAdmin = `
       extract(epoch from AGE(to_timestamp(t."closedAt"/1000), t."createdAt")::interval)/60 tma,
       extract(epoch from AGE(to_timestamp(t."startedAttendanceAt"/1000), t."createdAt"::timestamp)::interval)/60 tme,
       t."tenantId"
-    from "Tickets" t
-    INNER JOIN "LogTickets" lt ON lt."ticketId" = t."id"
+    from Tickets t
+    INNER JOIN "LogTickets" lt ON lt.ticketId = t."id"
     where
       t."tenantId" = :tenantId
       and date_trunc('day', t."createdAt") between :startDate and :endDate

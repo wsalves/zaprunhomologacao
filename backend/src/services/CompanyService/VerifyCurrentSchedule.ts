@@ -46,10 +46,10 @@ const VerifyCurrentSchedule = async (companyId?: number, queueId?: number, whats
       from (
         SELECT
               c.id,
-              to_char(current_date, 'day') currentWeekday,
+              DATE_FORMAT(current_date, '%W') currentWeekday,
               (array_to_json(array_agg(s))->>0)::jsonb currentSchedule
         FROM "Whatsapps" c, jsonb_array_elements(c.schedules) s
-        WHERE s->>'weekdayEn' like trim(to_char(current_date, 'day')) and c.id = :whatsappId
+        WHERE s->>'weekdayEn' like trim(DATE_FORMAT(current_date, '%W')) and c.id = :whatsappId
         and c."companyId" = :companyId
         GROUP BY 1, 2
       ) s      
@@ -97,10 +97,10 @@ const VerifyCurrentSchedule = async (companyId?: number, queueId?: number, whats
       from (
         SELECT
               c.id,
-              to_char(current_date, 'day') currentWeekday,
+              DATE_FORMAT(current_date, '%W') currentWeekday,
               (array_to_json(array_agg(s))->>0)::jsonb currentSchedule
         FROM "Companies" c, jsonb_array_elements(c.schedules) s
-        WHERE s->>'weekdayEn' like trim(to_char(current_date, 'day')) and c.id = :companyId
+        WHERE s->>'weekdayEn' like trim(DATE_FORMAT(current_date, '%W')) and c.id = :companyId
         GROUP BY 1, 2
       ) s      
     `;
@@ -145,10 +145,10 @@ const VerifyCurrentSchedule = async (companyId?: number, queueId?: number, whats
       from (
         SELECT
               q.id,
-              to_char(current_date, 'day') currentWeekday,
+              DATE_FORMAT(current_date, '%W') currentWeekday,
               (array_to_json(array_agg(s))->>0)::jsonb currentSchedule
-        FROM "Queues" q, jsonb_array_elements(q.schedules) s
-        WHERE s->>'weekdayEn' like trim(to_char(current_date, 'day')) and q.id = :queueId
+        FROM Queues q, jsonb_array_elements(q.schedules) s
+        WHERE s->>'weekdayEn' like trim(DATE_FORMAT(current_date, '%W')) and q.id = :queueId
         and q."companyId" = :companyId
         GROUP BY 1, 2
       ) s     

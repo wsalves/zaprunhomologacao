@@ -401,7 +401,7 @@ const ListTicketsService = async ({
               attributes: ["id", "body"],
               where: {
                 body: where(
-                  fn("LOWER", fn('unaccent', col("body"))),
+                  fn("LOWER", col("body")),
                   "LIKE",
                   `%${sanitizedSearchParam}%`
                 ),
@@ -416,7 +416,7 @@ const ListTicketsService = async ({
             [Op.or]: [
               {
                 "$contact.name$": where(
-                  fn("LOWER", fn("unaccent", col("contact.name"))),
+                  fn("LOWER", col("contact.name")),
                   "LIKE",
                   `%${sanitizedSearchParam}%`
                 )
@@ -424,7 +424,7 @@ const ListTicketsService = async ({
               { "$contact.number$": { [Op.like]: `%${sanitizedSearchParam}%` } },
               {
                 "$message.body$": where(
-                  fn("LOWER", fn("unaccent", col("body"))),
+                  fn("LOWER", col("body")),
                   "LIKE",
                   `%${sanitizedSearchParam}%`
                 )
@@ -437,7 +437,7 @@ const ListTicketsService = async ({
             [Op.or]: [
               {
                 "$contact.name$": where(
-                  fn("LOWER", fn("unaccent", col("contact.name"))),
+                  fn("LOWER", col("contact.name")),
                   "LIKE",
                   `%${sanitizedSearchParam}%`
                 )

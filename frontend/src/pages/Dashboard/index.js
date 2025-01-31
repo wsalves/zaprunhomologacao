@@ -306,7 +306,7 @@ const Dashboard = () => {
     let count;
     let userOnline = 0;
     attendants.forEach(user => {
-      if (user.online === true) {
+      if (user.online === 1) {
         userOnline = userOnline + 1
       }
     })

@@ -344,8 +344,8 @@ async function handleVerifyCampaigns(job) {
 
     const campaigns: { id: number; scheduledAt: string }[] =
       await sequelize.query(
-        `SELECT id, "scheduledAt" FROM "Campaigns" c
-        WHERE "scheduledAt" BETWEEN NOW() AND NOW() + INTERVAL '3 hour' AND status = 'PROGRAMADA'`,
+        `SELECT id, scheduledAt FROM Campaigns c
+        WHERE scheduledAt BETWEEN NOW() AND DATE_ADD(NOW(), INTERVAL 3 HOUR) AND status = 'PROGRAMADA'`,
         { type: QueryTypes.SELECT }
       );
 
@@ -355,7 +355,7 @@ async function handleVerifyCampaigns(job) {
       const promises = campaigns.map(async (campaign) => {
         try {
           await sequelize.query(
-            `UPDATE "Campaigns" SET status = 'EM_ANDAMENTO' WHERE id = ${campaign.id}`
+            `UPDATE Campaigns SET status = 'EM_ANDAMENTO' WHERE id = ${campaign.id}`
           );
 
           const now = moment();

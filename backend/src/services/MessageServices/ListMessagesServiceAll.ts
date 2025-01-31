@@ -35,14 +35,14 @@ const ListMessagesServiceAll = async ({
   if (dateStart && dateEnd) {
     if (fromMe) {
       ticketsCounter = await sequelize.query(
-        `select COUNT(*) from "Messages" m where "companyId" = ${companyId} and "fromMe" = ${fromMe} and "createdAt"  between '${dateStart} 00:00:00' and '${dateEnd} 23:59:59'`,
+        `select COUNT(*) as count from Messages m where companyId = ${companyId} and fromMe = ${fromMe} and createdAt  between '${dateStart} 00:00:00' and '${dateEnd} 23:59:59'`,
         {
           type: QueryTypes.SELECT
         }
       );
     } else {
       ticketsCounter = await sequelize.query(
-        `select COUNT(*) from "Messages" m where "companyId" = ${companyId} and "createdAt" between '${dateStart} 00:00:00' and '${dateEnd} 23:59:59'`,
+        `select COUNT(*) as count from Messages m where companyId = ${companyId} and createdAt between '${dateStart} 00:00:00' and '${dateEnd} 23:59:59'`,
         {
           type: QueryTypes.SELECT
         }
@@ -51,14 +51,14 @@ const ListMessagesServiceAll = async ({
   } else {
     if (fromMe) {
       ticketsCounter = await sequelize.query(
-        `select COUNT(*) from "Messages" m where "companyId" = ${companyId} and "fromMe" = ${fromMe}`,
+        `select COUNT(*) as count from Messages m where companyId = ${companyId} and fromMe = ${fromMe}`,
         {
           type: QueryTypes.SELECT
         }
       );
     } else {
       ticketsCounter = await sequelize.query(
-        `select COUNT(*) from "Messages" m where "companyId" = ${companyId}`,
+        `select COUNT(*) as count from Messages m where companyId = ${companyId}`,
         {
           type: QueryTypes.SELECT
         }

@@ -27,33 +27,31 @@ export const TicketsDayService = async ({ initialDate, finalDate, companyId }: R
     sql = `
     SELECT
       COUNT(*) AS total,
-      extract(hour from tick."createdAt") AS horario
-      --to_char(DATE(tick."createdAt"), 'dd-mm-YYYY') as horario
+      extract(hour from tick.createdAt) AS horario
     FROM
-      "Tickets" tick
+      Tickets tick
     WHERE
-      tick."companyId" = ${companyId}
-      and DATE(tick."createdAt") >= '${initialDate} 00:00:00'
-      AND DATE(tick."createdAt") <= '${finalDate} 23:59:59'
+      tick.companyId = ${companyId}
+      and DATE(tick.createdAt) >= '${initialDate} 00:00:00'
+      AND DATE(tick.createdAt) <= '${finalDate} 23:59:59'
     GROUP BY
-      extract(hour from tick."createdAt")
-      --to_char(DATE(tick."createdAt"), 'dd-mm-YYYY')
+      extract(hour from tick.createdAt)
     ORDER BY
       horario asc;
     `
   } else {
     sql = `
     SELECT
-    COUNT(*) AS total,
-    to_char(DATE(tick."createdAt"), 'dd/mm/YYYY') as data
+      COUNT(*) AS total,
+      DATE_FORMAT(tick.createdAt, '%d/%m/%Y') as data
   FROM
-    "Tickets" tick
+    Tickets tick
   WHERE
-    tick."companyId" = ${companyId}
-    and DATE(tick."createdAt") >= '${initialDate}'
-    AND DATE(tick."createdAt") <= '${finalDate}'
+    tick.companyId = ${companyId}
+    and DATE(tick.createdAt) >= '${initialDate}'
+    AND DATE(tick.createdAt") <= '${finalDate}'
   GROUP BY
-    to_char(DATE(tick."createdAt"), 'dd/mm/YYYY')
+    DATE_FORMAT(tick.createdAt, '%d/%m/%Y')
   ORDER BY
     data asc;
   `

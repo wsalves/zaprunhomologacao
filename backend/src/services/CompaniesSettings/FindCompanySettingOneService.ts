@@ -12,7 +12,7 @@ type Params = {
 
 const FindCompanySettingOneService = async ({companyId, column}:Params): Promise<any> => {
     
-    const [results, metadata] = await sequelize.query(`SELECT "${column}" FROM "CompaniesSettings" WHERE "companyId"=${companyId}`)
+    const [results, metadata] = await sequelize.query(`SELECT ${column} FROM CompaniesSettings WHERE companyId=${companyId}`)
     return results;
 };
 

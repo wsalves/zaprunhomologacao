@@ -14,9 +14,9 @@ const query = `
   select
   coalesce(q.queue, 'Não informado') as label,
   count(1) as qtd
-  from "Tickets" t
-  left join "Queues" q on (t."queueId" = q.id)
-  where t."companyId" = :companyId AND t."userId" = :userId
+  from Tickets t
+  left join Queues q on (t."queueId" = q.id)
+  where t.companyId = :companyId AND t."userId" = :userId
   and date_trunc('day', t."createdAt") between :startDate and :endDate
   group by t."queueId", q.queue
   ) a
@@ -28,9 +28,9 @@ const queryAdmin = `
   select
   coalesce(q.queue, 'Não informado') as label,
   count(1) as qtd
-  from "Tickets" t
-  left join "Queues" q on (t."queueId" = q.id)
-  where t."companyId" = :companyId
+  from Tickets t
+  left join Queues q on (t."queueId" = q.id)
+  where t.companyId = :companyId
   and date_trunc('day', t."createdAt") between :startDate and :endDate
   group by t."queueId", q.queue
   ) a
