@@ -45,7 +45,7 @@ app.set("queues", {
   sendScheduledMessages
 });
 
-const allowedOrigins = [process.env.FRONTEND_URL];
+const allowedOrigins = JSON.parse(process.env.CORS);
 
 // Configuração do BullBoard
 if (String(process.env.BULL_BOARD).toLocaleLowerCase() === 'true' && process.env.REDIS_URI_ACK !== '') {
