@@ -10,7 +10,7 @@ module.exports = {
       if (!planExists) {
         await queryInterface.bulkInsert("Plans", [{
           id: 1,
-          name: "Plano 1",
+          name: "Plano Advanced",
           users: 10,
           connections: 10,
           queues: 10,
@@ -33,7 +33,7 @@ module.exports = {
 
       if (!companyExists) {
         await queryInterface.bulkInsert("Companies", [{
-          name: "Empresa 1",
+          name: "Prospex Tecnologia da Informação LTDA",
           planId: 1,
           createdAt: new Date(),
           updatedAt: new Date()
